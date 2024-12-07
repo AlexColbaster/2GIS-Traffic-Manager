@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './Deadlock.css'
 
-const TrafficJamList = () => {
-  // Состояние для хранения списка заторов
-  const [trafficJams, setTrafficJams] = useState([
+const trafficJams= 
     [
         {
-            "x1":45.039603, 
+            "id": "0",
+            "x1": 45.039603, 
             "y1": 38.979371,
             "x2": 45.03955, 
             "y2": 38.979798,
@@ -15,8 +14,9 @@ const TrafficJamList = () => {
         },
     
         {
+            "id": "1",
             "x1": 45.039682, 
-            "y1" :38.979552,
+            "y1": 38.979552,
             "x2": 45.039644, 
             "y2": 38.979829,
             "speed": 12,
@@ -24,6 +24,7 @@ const TrafficJamList = () => {
         },
     
         {
+            "id": "2",
             "x1": 45.039632,
             "y1": 38.979949,
             "x2": 45.039566, 
@@ -33,6 +34,7 @@ const TrafficJamList = () => {
         },
     
         {
+            "id": "3",
             "x1": 45.039250, 
             "y1": 38.979727,
             "x2": 45.039518, 
@@ -40,13 +42,20 @@ const TrafficJamList = () => {
             "speed": 55,
             "street": "Северная-Митрофана Седина"
         }
-    ]
-    
-  ]);
+]
+
+const TrafficJamList = () => {
+  // Состояние для хранения списка заторов
+  
 
   useEffect(() => {
+    
+  }, [])
+
+  // Функция для обработки нажатия кнопки
+  const handleButtonClick = (id:any) => {
     trafficJams.forEach((element:any) => {
-        const apiKey = '4cdeccce-daeb-4e9e-95d6-8b4321deb709'; // Замените на ваш ключ API
+        const apiKey = ''; // Замените на ваш ключ API
         const url = `https://routing.api.2gis.com/truck/6.0.0/global?key=${apiKey}`;
 
         const data = {
@@ -85,11 +94,6 @@ const TrafficJamList = () => {
             console.error('Error:', error);
         });
     });
-  }, [])
-
-  // Функция для обработки нажатия кнопки
-  const handleButtonClick = (id:any) => {
-    alert(`Информация о заторе: ${id}`);
   };
 
   return (

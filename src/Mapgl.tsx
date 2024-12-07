@@ -48,20 +48,7 @@ export default function Mapgl() {
             ];
             clusterer.load(markers);
 
-            /**
-             * Directions plugin
-             */
 
-            directions = new Directions(map, {
-                directionsApiKey: 'rujany4131', // It's just demo key
-            });
-
-            directions.carRoute({
-                points: [
-                    [55.28273111108218, 25.234131928828333],
-                    [55.35242563034581, 25.23925607042088],
-                ],
-            });
 
             setMapglContext({
                 mapglInstance: map,
@@ -72,7 +59,6 @@ export default function Mapgl() {
 
         // Destroy the map, if Map component is going to be unmounted
         return () => {
-            directions && directions.clear();
             clusterer && clusterer.destroy();
             map && map.destroy();
             setMapglContext({ mapglInstance: undefined, mapgl: undefined });
