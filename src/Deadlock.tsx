@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './Deadlock.css'
 
 const TrafficJamList = () => {
   // Состояние для хранения списка заторов
@@ -92,7 +93,7 @@ const TrafficJamList = () => {
   };
 
   return (
-    <div>
+    <div className='deadlock-list'>
       <h1>Список заторов на дороге</h1>
       <ul>
         {trafficJams.map((jam:any) => (
