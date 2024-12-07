@@ -84,7 +84,6 @@ export default function Mapgl() {
     return (
         <>
             <MapWrapper />
-            <ControlRotateCounterclockwise />
         </>
     );
 }
