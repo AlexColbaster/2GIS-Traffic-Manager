@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { MAP_CENTER } from './Mapgl';
+import { center } from './Mapgl';
 import { useMapglContext } from './MapglContext';
 
 function ButtonResetMapCenter() {
@@ -10,7 +10,7 @@ function ButtonResetMapCenter() {
             return;
         }
 
-        mapglInstance.setCenter(MAP_CENTER);
+        mapglInstance.setCenter(center);
     }, [mapglInstance]);
 
     return (

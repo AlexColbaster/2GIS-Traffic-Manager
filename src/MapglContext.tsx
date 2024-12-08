@@ -4,18 +4,21 @@ import { RulerControl } from '@2gis/mapgl-ruler';
 const MapglContext = createContext<{
     mapgl?: typeof mapgl;
     mapglInstance?: mapgl.Map;
+    center?: [number, number];
     rulerControl?: RulerControl;
     setMapglContext: Dispatch<SetStateAction<MapContextState>>;
 }>({
     mapgl: undefined,
     mapglInstance: undefined,
+    center: [8.979371, 45.039603],
     rulerControl: undefined,
     setMapglContext: () => {},
 });
 
 interface MapContextState {
-    mapglInstance?: mapgl.Map;
     mapgl?: typeof mapgl;
+    mapglInstance?: mapgl.Map;
+    center?: [8.979371, 45.039603];
     rulerControl?: RulerControl;
 }
 
@@ -24,13 +27,14 @@ export function useMapglContext() {
 }
 
 export function MapglContextProvider({ children }: { children: ReactNode }) {
-    const [{ mapglInstance, rulerControl, mapgl }, setMapglContext] = useState<MapContextState>({
+    const [{ mapglInstance, center, rulerControl, mapgl }, setMapglContext] = useState<MapContextState>({
         mapglInstance: undefined,
+        center: undefined,
         rulerControl: undefined,
         mapgl: undefined,
     });
     return (
-        <MapglContext.Provider value={{ mapgl, mapglInstance, rulerControl, setMapglContext }}>
+        <MapglContext.Provider value={{ mapgl, mapglInstance, center, rulerControl, setMapglContext }}>
             {children}
         </MapglContext.Provider>
     );

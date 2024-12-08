@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Deadlock.css'
+import { useMapglContext } from './MapglContext';
 
 const baseList:Array<any> = [
     {
@@ -53,11 +54,9 @@ const baseList:Array<any> = [
     }
 ]
 
-
 const TrafficJamList = () => {
   // Состояние для хранения списка заторов
     const [trafficJams, setTrafficJams] = useState<any>([])
-    
 
     useEffect(() => {
         setTrafficJams(baseList)
@@ -104,9 +103,14 @@ const TrafficJamList = () => {
     });
   }, [setTrafficJams])
 
+  const mapContext = useMapglContext();
+
   // Функция для обработки нажатия кнопки
   const handleButtonClick = (id:any) => {
-    
+    const deadlock = baseList.find(deadlock => deadlock.id === id);
+    const x = (deadlock.x1 + deadlock.x2) / 2;
+    const y = (deadlock.y1 + deadlock.y2) / 2;
+    mapContext.center = [x, y];
   };
 
   return (

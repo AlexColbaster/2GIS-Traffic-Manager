@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { load } from '@2gis/mapgl';
 import { useMapglContext } from './MapglContext';
 import { Clusterer } from '@2gis/mapgl-clusterer';
@@ -9,10 +9,15 @@ import { MapWrapper } from './MapWrapper';
 
 export const X_DELTA = -6.050000
 export const Y_DELTA = 6.05000
-export const MAP_CENTER = [38.979371, 45.039603];
+export const [center, setCenter]  = useState([38.979371, 45.039603]);
 
 export default function Mapgl() {
     const { setMapglContext } = useMapglContext();
+
+    const mapContext = useMapglContext();
+    console.log(mapContext.center);
+
+    // setCenter(mapContext.center);
 
     useEffect(() => {
         let map: mapgl.Map | undefined = undefined;
@@ -21,7 +26,7 @@ export default function Mapgl() {
 
         load().then((mapgl) => {
             map = new mapgl.Map('map-container', {
-                center: MAP_CENTER,
+                center,
                 zoom: 15,
                 key: '4cdeccce-daeb-4e9e-95d6-8b4321deb709',
                 trafficControl: true,
@@ -91,7 +96,7 @@ export default function Mapgl() {
             map && map.destroy();
             setMapglContext({ mapglInstance: undefined, mapgl: undefined });
         };
-    }, [setMapglContext]);
+    }, [setMapglContext, setCenter]);
 
     useControlRotateClockwise();
 
