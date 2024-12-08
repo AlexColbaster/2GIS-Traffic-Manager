@@ -5,10 +5,11 @@ import { Clusterer } from '@2gis/mapgl-clusterer';
 import { RulerControl } from '@2gis/mapgl-ruler';
 import { Directions } from '@2gis/mapgl-directions';
 import { useControlRotateClockwise } from './useControlRotateClockwise';
-import { ControlRotateCounterclockwise } from './ControlRotateConterclockwise';
 import { MapWrapper } from './MapWrapper';
 
-export const MAP_CENTER = [55.31878, 25.23584];
+export const X_DELTA = -6.050000
+export const Y_DELTA = 6.05000
+export const MAP_CENTER = [38.979371, 45.039603];
 
 export default function Mapgl() {
     const { setMapglContext } = useMapglContext();
@@ -21,34 +22,61 @@ export default function Mapgl() {
         load().then((mapgl) => {
             map = new mapgl.Map('map-container', {
                 center: MAP_CENTER,
-                zoom: 13,
+                zoom: 15,
                 key: '4cdeccce-daeb-4e9e-95d6-8b4321deb709',
+                trafficControl: true,
             });
 
             map.on('click', (e) => console.log(e));
 
             /**
-             * Ruler  plugin
+             * Ruler plugin
              */
-
             const rulerControl = new RulerControl(map, { position: 'centerRight' });
 
             /**
-             * Clusterer plugin
+             * Clusterer plugin with custom HTML-based icons
              */
-
             clusterer = new Clusterer(map, {
                 radius: 60,
             });
 
+            // Определяем маркеры с кастомными HTML-иконками
             const markers = [
-                { coordinates: [55.27887, 25.21001] },
-                { coordinates: [55.30771, 25.20314] },
-                { coordinates: [55.35266, 25.24382] },
+                {
+                    coordinates: [38.979371, 45.039603],
+                    type: 'html' as const,
+                    html: '<div style="width: 32px; height: 32px; background: url(/cam.png) no-repeat center; background-size: cover; cursor: pointer;"></div>',
+                },
+                {
+                    coordinates: [38.979552, 45.039682],
+                    type: 'html' as const,
+                    html: '<div style="width: 32px; height: 32px; background: url(/cam.png) no-repeat center; background-size: cover; cursor: pointer;"></div>',
+                },
+                {
+                    coordinates: [38.979949, 45.039632],
+                    type: 'html' as const,
+                    html: '<div style="width: 32px; height: 32px; background: url(/cam.png) no-repeat center; background-size: cover; cursor: pointer;"></div>',
+                },
+                {
+                    coordinates: [38.979727, 45.039250],
+                    type: 'html' as const,
+                    html: '<div style="width: 32px; height: 32px; background: url(/cam.png) no-repeat center; background-size: cover; cursor: pointer;"></div>',
+                },
+                {
+                    coordinates: [38.981622, 45.039374],
+                    type: 'html' as const,
+                    html: '<div style="width: 32px; height: 32px; background: url(/cam.png) no-repeat center; background-size: cover; cursor: pointer;"></div>',
+                },
             ];
+
+            // Загружаем маркеры в кластеризатор
             clusterer.load(markers);
 
-
+            /**
+             * Directions plugin
+             */
+           
 
             setMapglContext({
                 mapglInstance: map,

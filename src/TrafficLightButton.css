@@ -1,16 +1,7 @@
 .traffic-button {
-    padding: 12px;
-    font-size: 16px;
-    background: rgba(100, 100, 100, 0.75);
-    border-radius: 8px;
-    border-width: 0;
+
     position: absolute;
     right: 16px;
     bottom: 16px;
   }
   
-.traffic-button:hover,
-.traffic-button:active{
-    background: rgba(70, 70, 70, 0.9);
-    cursor: pointer;
-}

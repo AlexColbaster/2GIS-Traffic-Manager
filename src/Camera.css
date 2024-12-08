@@ -1,7 +1,6 @@
 .camera {
-    background: rgb(10, 10, 78);
     width: 100%;
     height: 100%;
-    background: no-repeat url(/public/camera.png) rgb(207, 63, 63) center center;
+    background: no-repeat url(/public/camera.png) rgb(10, 82, 48) center center;
     background-size: 15%;
 }
